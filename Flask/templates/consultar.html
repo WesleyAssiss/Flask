@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consultar Usuários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            padding: 5px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #0074D9;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Consultar Usuários</h1>
+    <form method="post" action="{{ url_for('consultar') }}">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <input type="submit" value="Consultar">
+    </form>
+
+    <!-- Verifica se há dados (pessoas) para exibir. -->
+{% if data %}
+        <!-- Define um cabeçalho "Resultados" se houver dados. -->
+        <h2>Resultados:</h2>
+        <!-- Abre uma lista não ordenada para exibir as informações das pessoas. -->
+        <ul>
+        <!-- Inicia um loop para iterar sobre cada pessoa nos dados. -->
+        {% for person in data %}
+            <!-- Cria um item de lista com o nome e o email da pessoa. -->
+            <li>{{ person['name'] }} - {{ person['email'] }}
+                <!-- Cria um link para a rota 'atualizar' com o nome da pessoa como parâmetro. -->
+                <a href="{{ url_for('atualizar', username=person['name']) }}">Alterar dados</a>
+            </li>
+        <!-- Encerra o loop. -->
+        {% endfor %}
+        <!-- Fecha a lista não ordenada. -->
+        </ul>
+    <!-- Encerra a verificação de dados. -->
+    {% endif %}
+
+    <!-- Cria um link para retornar ao menu principal. -->
+    <p><a href="{{ url_for('index') }}">Menu</a></p>
+
+</body>
+</html>

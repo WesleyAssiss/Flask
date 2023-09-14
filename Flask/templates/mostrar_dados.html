@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mostrar Dados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .button.menu {
+            background-color: #0074D9;
+        }
+        .button.voltar {
+            background-color: #FF4136;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultado da Consulta</h1>
+
+    <!-- Verifica se há dados (pessoas) para exibir. -->
+{% if data %}
+        <!-- Define um cabeçalho "Dados Encontrados" se houver dados. -->
+        <h2>Dados Encontrados:</h2>
+        <!-- Abre uma lista não ordenada para exibir as informações das pessoas. -->
+        <ul>
+        <!-- Inicia um loop para iterar sobre cada pessoa nos dados. -->
+        {% for person in data %}
+            <!-- Cria um item de lista com o nome e o email da pessoa. -->
+            <li>{{ person['name'] }} - {{ person['email'] }}
+                <!-- Cria um link para a rota 'atualizar' com o nome e email da pessoa como parâmetros. -->
+                <a href="{{ url_for('atualizar', username=person['name'], email=person['email']) }}">Alterar dados</a>
+            </li>
+        <!-- Encerra o loop. -->
+        {% endfor %}
+        <!-- Fecha a lista não ordenada. -->
+        </ul>
+    <!-- Se não houver dados, exibe uma mensagem informando que nenhum dado foi encontrado. -->
+    {% else %}
+        <p>Nenhum dado encontrado.</p>
+    {% endif %}
+
+
+    <div class="button-container">
+        <a class="button menu" href="{{ url_for('index') }}">Menu</a>
+        <a class="button voltar" href="{{ url_for('consultar') }}">Voltar</a>
+    </div>
+</body>
+</html>

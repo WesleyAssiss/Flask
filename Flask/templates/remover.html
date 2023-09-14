@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remover Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            padding: 5px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #FF4136;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #0074D9;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remover Usuário</h1>
+    <form method="post" action="{{ url_for('remover') }}">
+        <label for="name">Nome para Remover:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email para Remover:</label>
+        <input type="email" id="email" name="email" required><br>
+        <input type="submit" value="Remover">
+    </form>
+    <!-- Verifica se há uma mensagem para exibir. -->
+{% if mensagem %}
+        <!-- Exibe a mensagem em um parágrafo. -->
+        <p>{{ mensagem }}</p>
+    <!-- Encerra a verificação da mensagem. -->
+    {% endif %}
+
+    <!-- Cria um link para retornar ao menu principal. -->
+    <p><a href="{{ url_for('index') }}">Menu</a></p>
+
+</body>
+</html>

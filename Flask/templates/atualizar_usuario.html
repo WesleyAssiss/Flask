@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atualizar Usuário</title>
+</head>
+<body>
+    <h1>Atualizar Usuário</h1>
+    <form method="post" action="{{ url_for('atualizar_usuario', user_id=user['_id']) }}">
+        <label for="new_name">Novo Nome:</label>
+        <input type="text" id="new_name" name="new_name" required><br>
+        <label for="new_email">Novo Email:</label>
+        <input type="email" id="new_email" name="new_email" required><br>
+        <input type="submit" value="Atualizar">
+    </form>
+   <!-- Verifica se há uma mensagem para exibir. -->
+{% if mensagem %}
+        <!-- Exibe a mensagem em um parágrafo. -->
+        <p>{{ mensagem }}</p>
+    <!-- Encerra a verificação da mensagem. -->
+    {% endif %}
+
+    <!-- Verifica se há um erro para exibir. -->
+    {% if erro %}
+        <!-- Exibe o erro em um parágrafo. -->
+        <p>{{ erro }}</p>
+    <!-- Encerra a verificação do erro. -->
+    {% endif %}
+
+    <!-- Cria um link para retornar ao menu principal. -->
+    <p><a href="{{ url_for('index') }}">Menu</a></p>
+
+</body>
+</html>

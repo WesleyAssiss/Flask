@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atualizar Dados do Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            padding: 5px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #0074D9;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Atualizar Dados do Usuário</h1>
+    <form method="post" action="{{ url_for('atualizar_usuario') }}">
+        <label for="old_name">Nome Antigo:</label>
+        <input type="text" id="old_name" name="old_name" required><br>
+        <label for="old_email">Email Antigo:</label>
+        <input type="email" id="old_email" name="old_email" required><br>
+        <label for="new_name">Novo Nome:</label>
+        <input type="text" id="new_name" name="new_name" required><br>
+        <label for="new_email">Novo Email:</label>
+        <input type="email" id="new_email" name="new_email" required><br>
+        <input type="submit" value="Atualizar">
+    </form>
+    <!-- Verifica se há uma mensagem para exibir. -->
+{% if mensagem %}
+        <!-- Exibe a mensagem em um parágrafo. -->
+        <p>{{ mensagem }}</p>
+    <!-- Encerra a verificação da mensagem. -->
+    {% endif %}
+
+    <!-- Cria um link para retornar ao menu principal. -->
+    <p><a href="{{ url_for('index') }}">Menu</a></p>
+
+</body>
+</html>

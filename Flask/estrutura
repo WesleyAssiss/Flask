@@ -1,0 +1,15 @@
+Flask/
+|-- static/
+|   |-- Tela.css
+|-- templates/
+|   |-- adicionar.html
+|   |-- atualizar.html
+|   |-- atualizar_usuario.html
+|   |-- consultar.html
+|   |-- index.html
+|   |-- menu.html
+|   |-- mostrar_dados.html
+|   |-- remover.html
+|-- app.py
+
+
